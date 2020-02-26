@@ -13,8 +13,9 @@
 
 		try {
 			$pdo = new PDO($dsn, $user, $pass);
-			$statement = $pdo->prepare("INSERT INTO test (text) values (?);");
-			$statement->execute([$data]);
+			$statement = $pdo->prepare("INSERT INTO test (text,howManyQuotes) values (?,1);");
+            $statement->execute([$data]);
+            $pdo->prepare("INSERT INTO s VALUES 10;");
 		} catch (PDOException $ex) {
 			echo "Błąd";
 		}
